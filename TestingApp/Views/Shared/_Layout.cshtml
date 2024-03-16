@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>@ViewBag.Title</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="~/Assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="~/Assets/css/stisla/prism.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/Assets/css/stisla/style.css">
+    <link rel="stylesheet" href="~/Assets/css/stisla/components.css">
+
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- /END GA -->
+</head>
+
+<body>
+    <div id="app">
+        <div class="main-wrapper main-wrapper-1">
+            <div class="navbar-bg"></div>
+            <nav class="navbar navbar-expand-lg main-navbar">
+                <form class="form-inline mr-auto">
+                    <ul class="navbar-nav mr-3">
+                        <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
+                        <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="fas fa-search"></i></a></li>
+                    </ul>
+                </form>
+
+                <ul class="navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+                            <img alt="image" src="~/Assets/img/Avatar/avatar-1.png" class="rounded-circle mr-1">
+                            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-title">Logged in 5 min ago</div>
+                            <a href="features-profile.html" class="dropdown-item has-icon">
+                                <i class="far fa-user"></i> Profile
+                            </a>
+                            <a href="features-activities.html" class="dropdown-item has-icon">
+                                <i class="fas fa-bolt"></i> Activities
+                            </a>
+                            <a href="features-settings.html" class="dropdown-item has-icon">
+                                <i class="fas fa-cog"></i> Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item has-icon text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="main-sidebar sidebar-style-2">
+                <aside id="sidebar-wrapper">
+                    <div class="sidebar-brand">
+                        <a href="index.html">Stisla</a>
+                    </div>
+                    <div class="sidebar-brand sidebar-brand-sm">
+                        <a href="index.html">St</a>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li class="menu-header">Dashboard</li>
+                        <li><a class="nav-link" href="@Url.Action("Index", "Home")"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
+
+                        <li class="dropdown">
+                            <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Master Data</span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="@Url.Action("Index", "Jurusan")">Jurusan</a></li>
+                                <li><a class="nav-link" href="@Url.Action("Index", "Student")">Mahasiswa</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <section class="section">
+                    <div class="section-header">
+                        <h1>@ViewBag.Title</h1>
+                    </div>
+                    @if (Request.Url.AbsolutePath == "/")
+                    {
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-primary">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Total Admin</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            10
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-danger">
+                                        <i class="far fa-newspaper"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>News</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            42
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-warning">
+                                        <i class="far fa-file"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Reports</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            1,201
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                <div class="card card-statistic-1">
+                                    <div class="card-icon bg-success">
+                                        <i class="fas fa-circle"></i>
+                                    </div>
+                                    <div class="card-wrap">
+                                        <div class="card-header">
+                                            <h4>Online Users</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            47
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    @RenderBody()
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- General JS Scripts -->
+    <script src="~/Assets/js/stisla/jquery.min.js"></script>
+    <script src="~/Assets/js/stisla/popper.js"></script>
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/stisla/jquery.nicescroll.min.js"></script>
+    <script src="~/Assets/js/stisla/moment.min.js"></script>
+    <script src="~/Assets/js/stisla/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="~/Assets/js/stisla/bootstrap-modal.js"></script>
+
+    <!-- Template JS -->
+    <script src="~/Assets/js/stisla/scripts.js"></script>
+    <script src="~/Assets/js/stisla/custom.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#example").DataTable({
+                "lengthMenu": [5, 10, 15],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian.json"
+                }
+            });
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+@*<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </body>
+    </html>*@

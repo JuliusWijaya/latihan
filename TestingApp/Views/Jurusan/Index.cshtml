@@ -1,0 +1,103 @@
+﻿@model IEnumerable<TestingApp.Models.Jurusan>
+
+@{
+    ViewBag.Title = "Jurusan";
+}
+
+
+@*@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible show fade">
+        <div class="alert-body">
+            <button class="close" data-dismiss="alert">
+                <span>×</span>
+            </button>
+            @ViewBag.Message
+        </div>
+    </div>
+}*@
+
+<div>
+    @if (TempData["message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Successfully", '@TempData["message"]', "success");
+            };
+        </script>
+    }
+
+    @if (TempData["message-error"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Error", '@TempData["message-error"]', "error");
+            };
+        </script>
+    }
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="px-5 py-3">
+                <div class="row justify-content-between">
+                    <h5>List Jurusan</h5>
+               
+                    <a href="@Url.Action("Create", "Jurusan")" class="btn btn-primary">
+                        Tambah Data
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered" id="example">
+                    <thead>
+                        <tr>
+                            <th>ID JURUSAN</th>
+                            <th>NAMA JURUSAN</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id_Jurusan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nama_Jurusan)
+                                    </td>
+                                    <td>
+                                        <a href="@Url.Action("Details", "Jurusan", new { id = item.Id })" class="btn btn-warning">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="@Url.Action("Edit", "Jurusan", new { id = item.Id })" class="btn btn-success mx-2">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        </a>
+                                        <form method="post" action="@Url.Action("Delete", "Jurusan", new { id = item.Id })" class="d-inline">
+                                            <input type="hidden" name="_method" value="delete" />
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr><td colspan="3" class="text-center"><span class="text-danger">Data Not Available</span></td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

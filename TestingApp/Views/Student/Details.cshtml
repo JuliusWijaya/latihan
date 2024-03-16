@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="Nim">NIM</label>
+                    <input class="form-control" id="Nim" name="Nim" value="@ViewBag.Student.Nim" disabled />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Name">NAMA</label>
+                    <input class="form-control" id="Name" name="Name" value="@ViewBag.Student.Name" disabled />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Jk">JK</label>
+                    <input class="form-control" id="Jk" name="Jk" value="@ViewBag.Student.Jk" disabled />
+                </div>
+
+                <div class="mb-3">
+                    <label for="Id_jurusan">JURUSAN</label>
+                    <input class="form-control" id="Jk" name="Jk" value="@ViewBag.Student.Jurusan.Nama_Jurusan" disabled />
+                </div>
+
+                <div class="mt-4">
+                    <a href="@Url.Action("Index", "Student")" class="btn btn-danger mx-2">Kembali</a>
+                    <button type="submit" class="btn btn-success">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

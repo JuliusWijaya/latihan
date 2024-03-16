@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="row">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <form action="@Url.Action("Create", "Jurusan")" method="POST">
+                    <div class="mb-3">
+                        <label for="Id_Jurusan">ID Jurusan</label>
+                        <input class="form-control" name="Id_Jurusan" required autofocus autocomplete="off" maxlength="9" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Nama_Jurusan">Nama Jurusan</label>
+                        <input class="form-control" name="Nama_Jurusan" required autocomplete="off" maxlength="50" />
+                    </div>
+
+                    <div>
+                        <a href="@Url.Action("Index", "Jurusan")" class="btn btn-danger mx-2">Kembali</a>
+                        <button type="submit" class="btn btn-success">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
