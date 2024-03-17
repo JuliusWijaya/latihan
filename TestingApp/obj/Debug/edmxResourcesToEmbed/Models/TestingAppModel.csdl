@@ -7,6 +7,7 @@
       <End Role="Jurusan" EntitySet="Jurusans" />
       <End Role="Student" EntitySet="Students" />
     </AssociationSet>
+    <EntitySet Name="Users" EntityType="DbStudentModel.User" />
   </EntityContainer>
   <EntityType Name="Jurusan">
     <Key>
@@ -40,4 +41,13 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+  </EntityType>
 </Schema>

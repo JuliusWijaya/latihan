@@ -27,5 +27,6 @@ namespace TestingApp.Models
     
         public virtual DbSet<Jurusan> Jurusans { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

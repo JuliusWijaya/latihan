@@ -18,6 +18,15 @@
     <Property Name="Jk" Type="char" MaxLength="9" />
     <Property Name="Id_jurusan" Type="int" />
   </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="85" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="85" Nullable="false" />
+    <Property Name="Role" Type="char" MaxLength="12" Nullable="false" />
+  </EntityType>
   <Association Name="FK__Students__Id_jur__74AE54BC">
     <End Role="Jurusans" Type="Self.Jurusans" Multiplicity="0..1" />
     <End Role="Students" Type="Self.Students" Multiplicity="*" />
@@ -33,6 +42,7 @@
   <EntityContainer Name="DbStudentModelStoreContainer">
     <EntitySet Name="Jurusans" EntityType="Self.Jurusans" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__Students__Id_jur__74AE54BC" Association="Self.FK__Students__Id_jur__74AE54BC">
       <End Role="Jurusans" EntitySet="Jurusans" />
       <End Role="Students" EntitySet="Students" />

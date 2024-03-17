@@ -8,6 +8,7 @@ using TestingApp.Models;
 
 namespace TestingApp.Controllers
 {
+
     public class JurusanController : Controller
     {
         private DbStudentEntities _context = new DbStudentEntities();
@@ -56,7 +57,7 @@ namespace TestingApp.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPut]
         public ActionResult Edit(Jurusan model)
         {
            var data = _context.Jurusans.Where(x => x.Id == model.Id).FirstOrDefault();

@@ -1,45 +1,47 @@
 ﻿
 @{
-    ViewBag.Title = "Create";
-
-    if (Session["id"] == null)
-    {
-        Response.Redirect("~/Authentication/Login");
-    }
+    ViewBag.Title = "Edit";
 }
 
 <div class="row">
     <div class="col-12 col-md-8 col-lg-6">
         <div class="card">
             <div class="card-body">
-                <form action="@Url.Action("Create", "Student")" method="POST">
+                <form action="@Url.Action("Edit", "Student")" method="POST">
                     <div class="mb-3">
                         <label for="Nim">NIM</label>
-                        <input class="form-control" id="Nim" name="Nim" required autofocus autocomplete="off" maxlength="9" />
+                        <input class="form-control" id="Nim" name="Nim" value="@ViewBag.Mhs.Nim" required autofocus autocomplete="off" maxlength="9" />
                     </div>
 
                     <div class="mb-3">
                         <label for="Name">NAMA</label>
-                        <input class="form-control" id="Name" name="Name" required autocomplete="off" maxlength="50" />
+                        <input class="form-control" id="Name" name="Name" value="@ViewBag.Mhs.Name" required autocomplete="off" maxlength="50" />
                     </div>
 
                     <div class="mb-3">
                         <label for="Jk">JK</label>
                         <select class="form-control" name="Jk" id="Jk" required>
-                            <option selected>-- Pilih Jenis Kelamin --</option>
-                            <option value="Laki-laki">Laki-laki</option>
-                            <option value="Perempuan">Perempuan</option>
+                            <option>-- Pilih Jenis Kelamin --</option>
+                            <option selected="@(ViewBag.Mhs.Jk == "Laki-laki" ? "selected" : null)" value="Laki-laki">Laki-laki</option>
+                            <option selected="@(ViewBag.Mhs.Jk == "Perempuan" ? "selected" : null)" value="Perempuan">Perempuan</option>
                         </select>
                     </div>
 
                     <div class="mb-3">
                         <label for="Id_jurusan">JURUSAN</label>
-                       
+
                         <select class="form-control" name="Id_jurusan" id="Id_jurusan" required>
                             <option selected>-- Pilih Jurusan --</option>
                             @foreach (var row in ViewData["Jurusans"] as SelectList)
                             {
-                                <option value="@row.Value">@row.Text</option>
+                                if (ViewBag.Mhs.Id_jurusan == int.Parse(row.Value))
+                                {
+                                    <option value="@row.Value" selected>@row.Text</option>
+                                }
+                                else
+                                {
+                                    <option value="@row.Value">@row.Text</option>
+                                }
                             }
                         </select>
                     </div>

@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = $"Edit {ViewBag.Jrs.Id_Jurusan}";
+
+    if (Session["id"] == null)
+    {
+        Response.Redirect("~/Authentication/Login");
+    }
 }
 
 

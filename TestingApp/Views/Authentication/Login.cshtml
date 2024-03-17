@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<section class="section mt-5">
+    <div class="container mt-5">
+        <div class="row mt-5">
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                <div class="card card-primary">
+                    <div class="pt-3"><h4 class="text-center">Login</h4></div>
+
+                    <div class="card-body">
+                        <form action="@Url.Action("Login", "Authentication")" method="post" class="needs-validation" novalidate="">
+                            <div class="form-group">
+                                <label for="Name">Usename</label>
+                                <input type="text" id="Name" name="Name" class="form-control" tabindex="1" required autofocus>
+                                <div class="invalid-feedback">
+                                    Please fill in your username
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="d-block">
+                                    <label for="Password" class="control-label">Password</label>
+                                </div>
+                                <input type="password" id="Password" name="Password" class="form-control" tabindex="2" required>
+                                <div class="invalid-feedback">
+                                    please fill in your password
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                    Login
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class=" text-muted text-center">
+                            Don't have an account? <a href="@Url.Action("Registration", "Authentication")">Create One</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (TempData["message-error"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Error", '@TempData["message-error"]', "error");
+        };
+    </script>
+}
+
+@if (TempData["message-change-password"] != null)
+{
+    <script type="text/javascript">
+        window.onload = function () {
+            swal("Successfully", '@TempData["message-change-password"]', "error");
+        };
+    </script>
+}

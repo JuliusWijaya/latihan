@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Jurusan";
+
+    if (Session["id"] == null)
+    {
+        Response.Redirect("~/Authentication/Login");
+    }
 }
 
 

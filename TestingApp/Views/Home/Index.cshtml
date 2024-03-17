@@ -1,5 +1,10 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+    if (Session["id"] == null)
+    {
+        Response.Redirect("~/Authentication/Login");
+    }
 }
 
 <div class="jumbotron">
@@ -7,3 +12,12 @@
     <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
+
+@if (TempData["message-success"] != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                swal("Successfully", '@TempData["message-success"]', "success");
+            };
+    </script>
+}

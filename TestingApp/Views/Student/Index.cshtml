@@ -2,16 +2,22 @@
 
 @{
     ViewBag.Title = "Mahasiswa";
+
+
+    if (Session["id"] == null)
+    {
+        Response.Redirect("~/Authentication/Login");
+    }
 }
 
 <div>
     @if (TempData["message"] != null)
     {
-        <script type="text/javascript">
+    <script type="text/javascript">
             window.onload = function () {
                 swal("Successfully", '@TempData["message"]', "success");
             };
-        </script>
+    </script>
     }
 </div>
 
@@ -82,8 +88,9 @@
                                         <td>
                                             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                                             @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                                            <form method="post" asp-action="Delete" asp-controller="Student" asp-route-id="@item.Id" class="form-delete">
-                                                <button type="button" class="btn btn-danger btn-delete" onclick="functionConfirm(this)">
+                                            <form action="@Url.Action("Delete", "Student", new { id = item.Id })" method="post">
+                                                <input type="hidden" name="_method" value="delete" />
+                                                <button type="submit" class="btn btn-danger btn-delete">
                                                     <i class="fa fa-times" aria-hidden="true"></i>
                                                 </button>
                                             </form>
@@ -110,45 +117,7 @@
 
 @section scripts{
     <script>
-        function functionConfirm(event) {
-            const swal = Swal.mixin({
-                customClass: {
-                    confirmButton: 'btn btn-success',
-                    cancelButton: 'btn btn-danger'
-                },
-                buttonsStyling: false
-            })
-
-            swal.fire({
-                title: 'Are you sure?',
-                text: "Delete !",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Delete',
-                cancelButtonText: 'Cancel',
-                reverseButtons: true,
-                timer: 5000
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(".form-delete").submit();
-                    swal.fire({
-                        title: 'Successfully!',
-                        text: 'Data Mahasiswa berhasi di hapus.',
-                        icon: 'success',
-                        timer: '3000'
-                    })
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swal.fire(
-                        'İptal edildi',
-                        '',
-                        'error'
-                    )
-                }
-            })
-        }
+       
     </script>
 }
 

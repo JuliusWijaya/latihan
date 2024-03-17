@@ -6,8 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="0e1891a5c1c84fb78de009c45016b863" Name="Diagram1">
         <EntityTypeShape EntityType="DbStudentModel.Jurusan" Width="1.5" PointX="0.75" PointY="1.125" />
-        <EntityTypeShape EntityType="DbStudentModel.Student" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DbStudentModel.Student" Width="1.5" PointX="3.125" PointY="1.125" />
         <AssociationConnector Association="DbStudentModel.FK__Students__Id_jur__74AE54BC" />
+        <EntityTypeShape EntityType="DbStudentModel.User" Width="1.5" PointX="6" PointY="1.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
