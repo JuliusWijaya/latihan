@@ -57,7 +57,8 @@ namespace TestingApp.Controllers
             return View();
         }
 
-        [HttpPut]
+        [HttpPost]
+        [ValidateAntiForgeryToken()]
         public ActionResult Edit(Jurusan model)
         {
            var data = _context.Jurusans.Where(x => x.Id == model.Id).FirstOrDefault();
@@ -78,13 +79,42 @@ namespace TestingApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public JsonResult Delete(int id)
         {
-            var data = _context.Jurusans.Where(x => x.Id == id).FirstOrDefault();
-            _context.Jurusans.Remove(data);
-            _context.SaveChanges();
+            try
+            {
+                var data = _context.Jurusans.FirstOrDefault(x => x.Id == id);
+                Console.WriteLine(data);
+                _context.Jurusans.Remove(data);
+                _context.SaveChanges();
 
-            return RedirectToAction("Index", "Jurusan", new { message = $"Data {data.Nama_Jurusan} berhasil dihapus" });
+                var successResult = new
+                {
+                    success = "Jurusan successfully deleted",
+                    detail1 = data
+                };
+
+                return Json(successResult, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                var errorResult = new
+                {
+                    error = "An error occured",
+                    message = e.Message
+                };
+
+                return Json(errorResult, JsonRequestBehavior.AllowGet);
+            }
         }
+
+        //public ActionResult Delete(int id)
+        //{
+        //    var data = _context.Jurusans.Where(x => x.Id == id).FirstOrDefault();
+        //    _context.Jurusans.Remove(data);
+        //    _context.SaveChanges();
+
+        //    return RedirectToAction("Index", "Jurusan", new { message = $"Data {data.Nama_Jurusan} berhasil dihapus" });
+        //}
     }
 }

@@ -55,8 +55,6 @@ namespace TestingApp.Controllers
             //    TempData["message-error"] = "Login Failed!";
             //    return RedirectToAction("Login", "Authentication");
             //}
-
-       
         }
 
         [HttpGet]

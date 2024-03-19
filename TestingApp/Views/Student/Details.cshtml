@@ -29,7 +29,7 @@
 
                 <div class="mt-4">
                     <a href="@Url.Action("Index", "Student")" class="btn btn-danger mx-2">Kembali</a>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <a href="@Url.Action("Edit", "Student", new { id = ViewBag.Student.Id })" class="btn btn-success">Edit</a>
                 </div>
             </div>
         </div>

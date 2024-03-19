@@ -13,6 +13,8 @@
         <div class="card">
             <div class="card-body">
                 <form action="@Url.Action("Edit", "Jurusan")" method="POST">
+                    @Html.AntiForgeryToken()
+                  
                     <div class="mb-3">
                         <label for="Id_Jurusan">ID Jurusan</label>
                         <input class="form-control" id="Id_Jurusan" name="Id_Jurusan" value="@ViewBag.Jrs.Id_Jurusan" required autofocus autocomplete="off" maxlength="9" />

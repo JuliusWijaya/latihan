@@ -39,7 +39,7 @@
                 @* Html Partial _Navbar akan merender sebuah code HTML berupa navbar *@
                 @Html.Partial("_NavBar")
 
-                @{ 
+                @{
                     Html.RenderPartial("_SideBar");
                 }
 
@@ -61,9 +61,18 @@
         }
         else
         {
-           @RenderBody()
+            @RenderBody()
         }
     </div>
+
+    @if (TempData["message-success"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Successfully", '@TempData["message-success"]', "success");
+            };
+        </script>
+    }
 
     <!-- General JS Scripts -->
     <script src="~/Assets/js/stisla/jquery.min.js"></script>

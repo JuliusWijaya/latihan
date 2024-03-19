@@ -11,16 +11,16 @@
 
 
 @*@if (ViewBag.Message != null)
-{
-    <div class="alert alert-success alert-dismissible show fade">
-        <div class="alert-body">
-            <button class="close" data-dismiss="alert">
-                <span>×</span>
-            </button>
-            @ViewBag.Message
+    {
+        <div class="alert alert-success alert-dismissible show fade">
+            <div class="alert-body">
+                <button class="close" data-dismiss="alert">
+                    <span>×</span>
+                </button>
+                @ViewBag.Message
+            </div>
         </div>
-    </div>
-}*@
+    }*@
 
 <div>
     @if (TempData["message"] != null)
@@ -48,7 +48,7 @@
             <div class="px-5 py-3">
                 <div class="row justify-content-between">
                     <h5>List Jurusan</h5>
-               
+
                     <a href="@Url.Action("Create", "Jurusan")" class="btn btn-primary">
                         Tambah Data
                     </a>
@@ -80,12 +80,14 @@
                                         <a href="@Url.Action("Details", "Jurusan", new { id = item.Id })" class="btn btn-warning">
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                         </a>
+
                                         <a href="@Url.Action("Edit", "Jurusan", new { id = item.Id })" class="btn btn-success mx-2">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <form method="post" action="@Url.Action("Delete", "Jurusan", new { id = item.Id })" class="d-inline">
-                                            <input type="hidden" name="_method" value="delete" />
-                                            <button type="submit" class="btn btn-danger">
+
+                                        <form action="@Url.Action("Delete", "Jurusan", new { id = item.Id })" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <button type="button" class="btn btn-danger btn-Delete" data-id="@item.Id">
                                                 <i class="fa fa-times" aria-hidden="true"></i>
                                             </button>
                                         </form>
@@ -95,7 +97,11 @@
                         }
                         else
                         {
-                            <tr><td colspan="3" class="text-center"><span class="text-danger">Data Not Available</span></td></tr>
+                            <tr>
+                                <td colspan="3" class="text-center">
+                                    <span class="text-danger">Data Not Available</span>
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -103,6 +109,61 @@
         </div>
     </div>
 </div>
+
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $(".btn-Delete").on("click", function () {
+                var id = $(this).data("id");
+
+                swal({
+                    title: "Delete jurusan",
+                    text: "Do you want to delete jurusan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((oke) => {
+                    if (oke) {
+                        $.ajax({
+                            type: "POST",
+                            url: `../Jurusan/Delete?id=${id}`,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                console.log(result);
+                                if (!result.ok) {
+                                    throw new Error("Network response was not oke");
+                                }
+
+                                return response.json();
+
+                                if (result.success == "Jurusan successfully deleted") {
+                                    swal({
+                                        title: "Success",
+                                        text: "success deleting",
+                                        icon: "success",
+                                    });
+                                }
+
+                                location.reload();
+                            },
+                            error: function (error) {
+                                console.log("Error :" + error.message);
+                            }
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
+}
+
+
+
+
+
 
 
 

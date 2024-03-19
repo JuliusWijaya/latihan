@@ -13,11 +13,3 @@
     <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
-@if (TempData["message-success"] != null)
-{
-    <script type="text/javascript">
-            window.onload = function () {
-                swal("Successfully", '@TempData["message-success"]', "success");
-            };
-    </script>
-}
