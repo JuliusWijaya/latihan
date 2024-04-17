@@ -1,14 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DbStudentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="DbStudentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Users" EntityType="DbStudentModel.User" />
     <EntitySet Name="Jurusans" EntityType="DbStudentModel.Jurusan" />
     <EntitySet Name="Students" EntityType="DbStudentModel.Student" />
-    <AssociationSet Name="FK__Students__Id_jur__74AE54BC" Association="DbStudentModel.FK__Students__Id_jur__74AE54BC">
+    <AssociationSet Name="FK__Students__Id_jur__160F4887" Association="DbStudentModel.FK__Students__Id_jur__160F4887">
       <End Role="Jurusan" EntitySet="Jurusans" />
       <End Role="Student" EntitySet="Students" />
     </AssociationSet>
-    <EntitySet Name="Users" EntityType="DbStudentModel.User" />
   </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+  </EntityType>
   <EntityType Name="Jurusan">
     <Key>
       <PropertyRef Name="Id" />
@@ -16,7 +25,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Id_Jurusan" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
     <Property Name="Nama_Jurusan" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Students" Relationship="DbStudentModel.FK__Students__Id_jur__74AE54BC" FromRole="Jurusan" ToRole="Student" />
+    <NavigationProperty Name="Students" Relationship="DbStudentModel.FK__Students__Id_jur__160F4887" FromRole="Jurusan" ToRole="Student" />
   </EntityType>
   <EntityType Name="Student">
     <Key>
@@ -27,9 +36,9 @@
     <Property Name="Name" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
     <Property Name="Jk" Type="String" MaxLength="9" FixedLength="true" Unicode="false" />
     <Property Name="Id_jurusan" Type="Int32" />
-    <NavigationProperty Name="Jurusan" Relationship="DbStudentModel.FK__Students__Id_jur__74AE54BC" FromRole="Student" ToRole="Jurusan" />
+    <NavigationProperty Name="Jurusan" Relationship="DbStudentModel.FK__Students__Id_jur__160F4887" FromRole="Student" ToRole="Jurusan" />
   </EntityType>
-  <Association Name="FK__Students__Id_jur__74AE54BC">
+  <Association Name="FK__Students__Id_jur__160F4887">
     <End Type="DbStudentModel.Jurusan" Role="Jurusan" Multiplicity="0..1" />
     <End Type="DbStudentModel.Student" Role="Student" Multiplicity="*" />
     <ReferentialConstraint>
@@ -41,13 +50,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="85" FixedLength="false" Unicode="true" />
-    <Property Name="Role" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
-  </EntityType>
 </Schema>

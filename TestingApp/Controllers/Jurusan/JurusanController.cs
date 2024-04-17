@@ -11,8 +11,8 @@ namespace TestingApp.Controllers
 
     public class JurusanController : Controller
     {
-        private DbStudentEntities _context = new DbStudentEntities();
-        // GET: Jurusan
+        DbStudentEntities _context = new DbStudentEntities();
+     
         public ActionResult Index(string message)
         {
             if (!string.IsNullOrEmpty(message))

@@ -144,9 +144,12 @@
                                         text: "success deleting",
                                         icon: "success",
                                     });
+
+                                    setTimeout(() => {
+                                        window.location.reload(true);
+                                    }, 2000);
                                 }
 
-                                location.reload();
                             },
                             error: function (error) {
                                 console.log("Error :" + error.message);

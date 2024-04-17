@@ -1,66 +1,160 @@
-﻿
-@{
+﻿@{
+    Layout = null;
     ViewBag.Title = "Login";
 }
 
-<section class="section mt-5">
-    <div class="container mt-5">
-        <div class="row mt-5">
-            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                <div class="card card-primary">
-                    <div class="pt-3"><h4 class="text-center">Login</h4></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>@ViewBag.Title</title>
 
-                    <div class="card-body">
-                        <form action="@Url.Action("Login", "Authentication")" method="post" class="needs-validation" novalidate="">
-                            <div class="form-group">
-                                <label for="Name">Usename</label>
-                                <input type="text" id="Name" name="Name" class="form-control" tabindex="1" required autofocus>
-                                <div class="invalid-feedback">
-                                    Please fill in your username
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="~/Assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="~/Assets/css/stisla/prism.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="~/Assets/css/stisla/style.css">
+    <link rel="stylesheet" href="~/Assets/css/stisla/components.css">
+
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+
+    <style>
+        body {
+            background-image: url('../Assets/img/Bg/bg.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            
+        }
+
+        .main {
+            margin: 150px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Content -->
+    <div class="main">
+        <section class="section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-sm-6 offset-sm-2 col-md-5 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+                        <div class="card card-primary">
+                            <div class="pt-3"><h4 class="text-center">Login</h4></div>
+
+                            <div class="card-body">
+                                <form action="@Url.Action("Login", "Authentication")" method="post" class="needs-validation" novalidate="">
+                                    <div class="form-group">
+                                        <label for="Name">Username</label>
+                                        <input type="text" id="Name" name="Name" class="form-control" tabindex="1" required autofocus>
+                                        <div class="invalid-feedback">
+                                            Please fill in your username
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="d-block">
+                                            <label for="Password" class="control-label">Password</label>
+                                        </div>
+                                        <input type="password" id="Password" name="Password" class="form-control" tabindex="2" required>
+                                        <div class="invalid-feedback">
+                                            please fill in your password
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
+
+                                <div class=" text-muted text-center">
+                                    Don't have an account? <a href="@Url.Action("Registration", "Authentication")">Create One</a>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="d-block">
-                                    <label for="Password" class="control-label">Password</label>
-                                </div>
-                                <input type="password" id="Password" name="Password" class="form-control" tabindex="2" required>
-                                <div class="invalid-feedback">
-                                    please fill in your password
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                    Login
-                                </button>
-                            </div>
-                        </form>
-
-                        <div class=" text-muted text-center">
-                            Don't have an account? <a href="@Url.Action("Registration", "Authentication")">Create One</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</section>
 
-@if (TempData["message-error"] != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            swal("Error", '@TempData["message-error"]', "error");
-        };
-    </script>
-}
 
-@if (TempData["message-change-password"] != null)
-{
-    <script type="text/javascript">
-        window.onload = function () {
-            swal("Successfully", '@TempData["message-change-password"]', "error");
-        };
+    @if (TempData["message-error"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Error", '@TempData["message-error"]', "error");
+            };
+        </script>
+    }
+
+    @if (TempData["message-change-password"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Successfully", '@TempData["message-change-password"]', "error");
+            };
+        </script>
+    }
+
+    @if (TempData["message-success"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal("Successfully", '@TempData["message-success"]', "success");
+            };
+        </script>
+    }
+
+    <!-- General JS Scripts -->
+    <script src="~/Assets/js/stisla/jquery.min.js"></script>
+    <script src="~/Assets/js/stisla/popper.js"></script>
+    <script src="~/Assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Assets/js/stisla/jquery.nicescroll.min.js"></script>
+    <script src="~/Assets/js/stisla/moment.min.js"></script>
+    <script src="~/Assets/js/stisla/stisla.js"></script>
+
+    <!-- JS Libraies -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Page Specific JS File -->
+    <script src="~/Assets/js/stisla/bootstrap-modal.js"></script>
+
+    <!-- Template JS -->
+    <script src="~/Assets/js/stisla/scripts.js"></script>
+    <script src="~/Assets/js/stisla/custom.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#example").DataTable({
+                "lengthMenu": [5, 10, 15],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/Indonesian.json"
+                }
+            });
+        });
     </script>
-}
+</body>
+</html>
+
+

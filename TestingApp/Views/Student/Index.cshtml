@@ -2,22 +2,16 @@
 
 @{
     ViewBag.Title = "Mahasiswa";
-
-
-    if (Session["id"] == null)
-    {
-        Response.Redirect("~/Authentication/Login");
-    }
 }
 
 <div>
     @if (TempData["message"] != null)
     {
-    <script type="text/javascript">
+        <script type="text/javascript">
             window.onload = function () {
                 swal("Successfully", '@TempData["message"]', "success");
             };
-    </script>
+        </script>
     }
 </div>
 
@@ -40,9 +34,11 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                                 <div class="modal-body">
                                     <p>Modal body text goes here.</p>
                                 </div>
+
                                 <div class="modal-footer bg-whitesmoke br">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                     <button type="button" class="btn btn-primary">Save changes</button>
@@ -115,9 +111,4 @@
 </div>
 
 
-@section scripts{
-    <script>
-       
-    </script>
-}
 

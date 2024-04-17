@@ -1,11 +1,5 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Create";
-
-    if (Session["id"] == null)
-    {
-        Response.Redirect("~/Authentication/Login");
-    }
 }
 
 <div class="row">
@@ -34,13 +28,8 @@
 
                     <div class="mb-3">
                         <label for="Id_jurusan">JURUSAN</label>
-                       
                         <select class="form-control" name="Id_jurusan" id="Id_jurusan" required>
                             <option selected>-- Pilih Jurusan --</option>
-                            @foreach (var row in ViewData["Jurusans"] as SelectList)
-                            {
-                                <option value="@row.Value">@row.Text</option>
-                            }
                         </select>
                     </div>
 
@@ -53,4 +42,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    @*let makanan = @Html.Raw(Json.Encode(ViewBag.jurusanList));
+    console.log(makanan);*@
+
+    // Select element
+    //var listJurusan = document.getElementById("Id_jurusan");
+
+    // Iterate over the JSON data
+    //for (let key in makanan) {
+    //    if (makanan.hasOwnProperty(key)) {
+    //        var option   = document.createElement("option");
+    //        option.value = makanan[key].Value;
+    //        option.text  = makanan[key].Text;
+    //        listJurusan.appendChild(option);
+    //    }
+    //}
+</script>
 
